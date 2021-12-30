@@ -49,9 +49,9 @@ class WolframAlphaPlugin(Plugin):
             else:
                 response = "\n\n".join(["<b>{}</b>: {}".format(result.title, escape_html(result.text)) for result in query_response.results])
             if response:
-                update.message.reply_text(response, parse_mode='HTML')
+                update.effective_message.reply_text(response, parse_mode='HTML')
             else:
-                update.message.reply_text("❌ No results.")
+                update.effective_message.reply_text("❌ No results.")
         except Exception as ex:
-            log.error(ex.message)
-            update.message.reply_text("❌ Invalid query: {}".format(ex.message))
+            log.error(ex)
+            update.effective_message.reply_text("❌ Invalid query: {}".format(query))
